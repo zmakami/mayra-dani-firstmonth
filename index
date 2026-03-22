@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestro Primer Mes ❤️</title>
+  <meta name="description" content="Una pequeña experiencia hecha con amor para celebrar nuestro primer mes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-1: #fff8fb;
+      --bg-2: #ffeef5;
+      --bg-3: #ffd9e8;
+      --text: #2a1f26;
+      --muted: #6e5a66;
+      --primary: #e85d93;
+      --primary-dark: #cf3d79;
+      --card: rgba(255,255,255,0.65);
+      --border: rgba(255,255,255,0.55);
+      --shadow: 0 20px 60px rgba(191, 92, 137, 0.18);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 182, 214, 0.55), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 214, 230, 0.85), transparent 28%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 42%, #fff 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    .floating-blur {
+      position: fixed;
+      inset: auto;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(60px);
+      opacity: 0.45;
+    }
+
+    .blur-1 {
+      width: 260px;
+      height: 260px;
+      background: #ffb8d6;
+      top: 80px;
+      left: -60px;
+      border-radius: 50%;
+      animation: drift 10s ease-in-out infinite alternate;
+    }
+
+    .blur-2 {
+      width: 320px;
+      height: 320px;
+      background: #ffd1e3;
+      top: 420px;
+      right: -90px;
+      border-radius: 50%;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    .blur-3 {
+      width: 240px;
+      height: 240px;
+      background: #ffe3ef;
+      bottom: 80px;
+      left: 10%;
+      border-radius: 50%;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(-12px) translateX(0px); }
+      to { transform: translateY(18px) translateX(18px); }
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 16px;
+      opacity: 0.16;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 0.16; }
+      100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .site {
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.45);
+      border-bottom: 1px solid rgba(255,255,255,0.42);
+    }
+
+    .nav-inner {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--primary-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 64px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .glass {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 42px;
+      border-radius: var(--radius-xl);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.6);
+      color: var(--primary-dark);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      line-height: 1.06;
+    }
+
+    .hero h1 {
+      margin-top: 18px;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #d8407e, #ff7aac);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 24px 0 0;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 15px 24px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #ff80af);
+      color: white;
+      box-shadow: 0 16px 30px rgba(232, 93, 147, 0.24);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.72);
+      color: var(--primary-dark);
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 36px;
+      overflow: hidden;
+      min-height: 580px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(35, 16, 27, 0.45), rgba(35, 16, 27, 0.05));
+    }
+
+    .hero-card-badge {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 2;
+      background: rgba(255,255,255,0.22);
+      color: white;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.26);
+      padding: 14px 18px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .hero-card-badge strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .section-head .eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+    }
+
+    .section-head p {
+      max-width: 700px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 22px;
+    }
+
+    .memory-card {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 0;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      min-height: 420px;
+      background: rgba(255,255,255,0.62);
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .memory-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .memory-card:nth-child(even) {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .memory-card.reverse .memory-media {
+      order: 2;
+    }
+
+    .memory-card.reverse .memory-copy {
+      order: 1;
+    }
+
+    .memory-media {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .memory-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .memory-media:hover img {
+      transform: scale(1.04);
+    }
+
+    .memory-copy {
+      padding: 38px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,255,255,0.8));
+    }
+
+    .memory-index {
+      color: var(--primary);
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .memory-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 8px;
+    }
+
+    .memory-date {
+      color: var(--primary-dark);
+      font-weight: 700;
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .memory-copy p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 17px;
+      margin: 0;
+    }
+
+    .reasons-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .reason-box,
+    .mini-note {
+      border-radius: var(--radius-xl);
+      padding: 34px;
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(255,255,255,0.75);
+      box-shadow: var(--shadow);
+    }
+
+    .reason-box h3,
+    .mini-note h3 {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .reason-display {
+      min-height: 170px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 26px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #fff6fa, #ffeef5);
+      color: #5a3747;
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      line-height: 1.7;
+      font-weight: 600;
+      margin: 18px 0 18px;
+    }
+
+    .reason-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 12px 0 0;
+    }
+
+    .reason-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #f2bfd4;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .reason-dot.active {
+      background: var(--primary);
+      transform: scale(1.15);
+    }
+
+    .mini-note p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .letter-shell {
+      padding: 18px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7), rgba(255,255,255,0.35));
+      border: 1px solid rgba(255,255,255,0.72);
+      box-shadow: var(--shadow);
+    }
+
+    .letter-box {
+      border-radius: 30px;
+      padding: 42px;
+      background:
+        linear-gradient(180deg, rgba(50, 25, 38, 0.96), rgba(32, 17, 25, 0.96));
+      color: white;
+      min-height: 460px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .letter-box::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255,119,172,0.26), transparent 60%);
+      top: -80px;
+      right: -60px;
+    }
+
+    .letter-box::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255,188,215,0.18), transparent 60%);
+      bottom: -70px;
+      left: -50px;
+    }
+
+    .letter-content,
+    .letter-locked {
+      position: relative;
+      z-index: 2;
+    }
+
+    .letter-box .eyebrow {
+      background: rgba(255,255,255,0.08);
+      color: #ffc4da;
+    }
+
+    .letter-locked {
+      display: grid;
+      place-items: center;
+      min-height: 370px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      font-size: 54px;
+      margin-bottom: 16px;
+    }
+
+    .letter-locked h3,
+    .letter-content h3 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 16px;
+    }
+
+    .letter-locked p,
+    .letter-content p {
+      color: rgba(255,255,255,0.84);
+      line-height: 1.95;
+      font-size: 17px;
+      max-width: 760px;
+    }
+
+    .letter-content {
+      display: none;
+    }
+
+    .letter-content.show {
+      display: block;
+      animation: fadeUp 0.6s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .letter-signature {
+      margin-top: 26px;
+      color: #ffbdd6 !important;
+      font-weight: 700;
+    }
+
+    .final-card {
+      text-align: center;
+      padding: 46px 28px;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.8);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .final-card h2 {
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      margin-bottom: 18px;
+    }
+
+    .final-card p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .yes-result {
+      display: none;
+      margin-top: 26px;
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #fff2f8, #ffe7f1);
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      font-weight: 700;
+      color: var(--primary-dark);
+      box-shadow: inset 0 0 0 1px rgba(232, 93, 147, 0.1);
+    }
+
+    .yes-result.show {
+      display: block;
+      animation: fadeUp 0.5s ease;
+    }
+
+    .footer {
+      padding: 40px 0 70px;
+      text-align: center;
+      color: #8f7583;
+      font-size: 14px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 10, 15, 0.82);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 100;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-inner {
+      width: min(100%, 1040px);
+      border-radius: 28px;
+      overflow: hidden;
+      background: #1e1118;
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.34);
+      position: relative;
+    }
+
+    .lightbox img {
+      width: 100%;
+      max-height: 80vh;
+      object-fit: cover;
+    }
+
+    .lightbox-caption {
+      padding: 20px 22px 24px;
+      color: rgba(255,255,255,0.86);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 0;
+      cursor: pointer;
+      font-size: 20px;
+      background: rgba(255,255,255,0.16);
+      color: white;
+      backdrop-filter: blur(8px);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .reasons-wrap,
+      .memory-card,
+      .memory-card:nth-child(even) {
+        grid-template-columns: 1fr;
+      }
+
+      .memory-card.reverse .memory-media,
+      .memory-card.reverse .memory-copy {
+        order: initial;
+      }
+
+      .hero-card {
+        min-height: 460px;
+      }
+
+      .hero-copy,
+      .memory-copy,
+      .reason-box,
+      .mini-note,
+      .letter-box {
+        padding: 28px;
+      }
+
+      section {
+        padding: 78px 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .hero p,
+      .section-head p,
+      .memory-copy p,
+      .mini-note p,
+      .letter-content p,
+      .letter-locked p,
+      .final-card p {
+        font-size: 15.5px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-card {
+        min-height: 380px;
+      }
+
+      .letter-box {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-blur blur-1"></div>
+  <div class="floating-blur blur-2"></div>
+  <div class="floating-blur blur-3"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="site">
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="brand">Para Mayra ❤️</div>
+        <div class="nav-links">
+          <a href="#historia">Historia</a>
+          <a href="#razones">Razones</a>
+          <a href="#carta">Carta</a>
+          <a href="#final">Final</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy glass reveal">
+          <span class="eyebrow">Nuestro primer mes</span>
+          <h1>
+            Un pequeño lugar para
+            <span class="gradient-text">nuestros recuerdos</span>
+          </h1>
+          <p id="heroMessage">
+            Quise hacer esto para ti porque este primer mes ha sido demasiado bonito para dejarlo solo en mi cabeza. Quería guardarlo de una manera especial, para que siempre podamos volver aquí y recordar lo lindo que ha sido todo contigo.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#historia">Comenzar ✨</a>
+            <button class="btn btn-secondary" id="openLetterTop">Ir a la carta 💌</button>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <img src="images/portada.jpg" alt="Portada de nosotros" />
+          <div class="hero-card-badge">
+            <strong>Feliz 1er mes</strong>
+            <span>Gracias por llegar a mi vida 💖</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="historia">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Nuestra mini historia</span>
+          <h2>Los momentos que quiero guardar contigo</h2>
+          <p>
+            No son solo fotos. Son pedacitos de tiempo que conmigo se quedaron, recuerdos que me siguen haciendo sonreír y que me recuerdan lo especial que eres para mí.
+          </p>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <section id="razones">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Por qué tú</span>
+          <h2>Unas cuantas cosas que me encantan de ti</h2>
+          <p>
+            Hay muchas más, pero quería poner algunas aquí para que sepas lo especial que has hecho este tiempo para mí.
+          </p>
+        </div>
+
+        <div class="reasons-wrap">
+          <div class="reason-box reveal">
+            <h3>Razones que no me canso de pensar</h3>
+            <div class="reason-display" id="reasonDisplay"></div>
+
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+              <button class="btn btn-primary" id="nextReason">Otra razón 💗</button>
+              <button class="btn btn-secondary" id="autoPlayReasons">Auto ✨</button>
+            </div>
+
+            <div class="reason-dots" id="reasonDots"></div>
+          </div>
+
+          <div class="mini-note reveal">
+            <h3>Lo más bonito</h3>
+            <p id="sideNote">
+              Me gusta que contigo hasta lo simple se siente bonito. Me gusta cómo me haces sentir paz, emoción y ganas de seguir construyendo momentos que valgan la pena. Este primer mes ha sido solo el inicio, pero ya significa muchísimo para mí.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="carta">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Lo más importante</span>
+          <h2>Quise dejar esto para el final</h2>
+          <p>
+            Porque hay cosas que se sienten mejor cuando llegan despacito… y esta era una de ellas.
+          </p>
+        </div>
+
+        <div class="letter-shell reveal">
+          <div class="letter-box">
+            <div class="letter-locked" id="lockedLetter">
+              <div>
+                <div class="lock-icon">🔒</div>
+                <span class="eyebrow">Carta bloqueada</span>
+                <h3>Tengo algo más que decirte...</h3>
+                <p>
+                  Quería guardar mis palabras más bonitas para este momento.  
+                  Cuando quieras, puedes abrir esta carta.
+                </p>
+                <div style="margin-top:24px;">
+                  <button class="btn btn-primary" id="unlockLetter">Abrir carta 💌</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="letter-content" id="letterContent">
+              <span class="eyebrow">Para ti</span>
+              <h3 id="letterTitle">Mayra, gracias por este primer mes</h3>
+              <p id="letterP1">
+                Desde que llegaste, muchas cosas se han sentido más bonitas. Este primer mes contigo me ha hecho sonreír más, sentir más paz y valorar todavía más lo bonito que es coincidir con alguien tan especial.
+              </p>
+              <p id="letterP2">
+                Gracias por cada momento, por cada plática, por cada risa y por cada detalle que quizá tú ves pequeño, pero que para mí significa mucho. Me encanta compartir mi tiempo contigo y me emociona pensar en todo lo que todavía nos falta vivir.
+              </p>
+              <p id="letterP3">
+                Si así de bonito ha sido este comienzo, entonces sé que lo nuestro puede seguir creciendo de una manera muy especial. Y la verdad, yo quiero seguir escribiendo esta historia contigo.
+              </p>
+              <p class="letter-signature" id="letterSignature">Feliz primer mes, mi amor. ❤️</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="final">
+      <div class="container">
+        <div class="final-card reveal">
+          <span class="eyebrow">Una última pregunta</span>
+          <h2>¿Quieres seguir escribiendo esta historia conmigo?</h2>
+          <p>
+            Porque yo sí quiero seguir llenando nuestra vida de recuerdos bonitos, momentos simples pero especiales, y muchas razones para seguir sonriendo contigo.
+          </p>
+
+          <div style="margin-top:28px;">
+            <button class="btn btn-primary" id="yesBtn">Sí ❤️</button>
+          </div>
+
+          <div class="yes-result" id="yesResult">
+            Entonces vamos por muchos recuerdos más ✨💖
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Hecho con muchísimo cariño para Mayra 💗
+    </footer>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="closeLightbox">✕</button>
+      <img id="lightboxImg" src="" alt="Recuerdo ampliado" />
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       EDITA SOLO ESTA PARTE PARA PERSONALIZAR TODO
+       ========================================================= */
+
+    const CONFIG = {
+      heroMessage: "Quise hacer esto para ti porque este primer mes ha sido demasiado bonito para dejarlo solo en mi cabeza. Quería guardarlo de una manera especial, para que siempre podamos volver aquí y recordar lo lindo que ha sido todo contigo.",
+
+      sideNote: "Me gusta que contigo hasta lo simple se siente bonito. Me gusta cómo me haces sentir paz, emoción y ganas de seguir construyendo momentos que valgan la pena. Este primer mes ha sido solo el inicio, pero ya significa muchísimo para mí.",
+
+      memories: [
+        {
+          title: "El inicio",
+          date: "El día en que todo empezó",
+          image: "images/foto1.jpg",
+          text: "No sé si ese día tú ya lo sentías también, pero yo desde ahí empecé a guardar algo muy bonito contigo."
+        },
+        {
+          title: "Tu sonrisa",
+          date: "Un momento que no se me olvida",
+          image: "images/foto2.jpg",
+          text: "Hay momentos contigo que se me quedan grabados sin esfuerzo, y tu sonrisa es una de esas cosas que siempre me cambia el día."
+        },
+        {
+          title: "Contigo todo se siente mejor",
+          date: "De esos recuerdos que me dan paz",
+          image: "images/foto3.jpg",
+          text: "Me gusta demasiado compartir tiempo contigo. Incluso los momentos simples se sienten especiales cuando estoy a tu lado."
+        },
+        {
+          title: "Un mes después",
+          date: "Y esto apenas comienza",
+          image: "images/foto4.jpg",
+          text: "Ha sido poco tiempo, pero lo suficiente para darme cuenta de lo especial que eres para mí y de lo mucho que me gusta lo nuestro."
+        },
+        {
+          title: "Lo que viene",
+          date: "Mis ganas de seguir contigo",
+          image: "images/foto5.jpg",
+          text: "Si así de bonito ha sido este primer capítulo, entonces me emociona mucho todo lo que todavía nos falta vivir juntos."
+        }
+      ],
+
+      reasons: [
+        "Porque tu sonrisa tiene una forma muy fácil de alegrarme el día.",
+        "Porque contigo me siento en paz y al mismo tiempo emocionado.",
+        "Porque haces especiales hasta los momentos más simples.",
+        "Porque me gusta demasiado la manera en que me haces sentir.",
+        "Porque desde que llegaste, muchas cosas se sienten más bonitas.",
+        "Porque este primer mes contigo ha significado muchísimo para mí."
+      ],
+
+      letterTitle: "Mayra, gracias por este primer mes",
+      letterP1: "Desde que llegaste, muchas cosas se han sentido más bonitas. Este primer mes contigo me ha hecho sonreír más, sentir más paz y valorar todavía más lo bonito que es coincidir con alguien tan especial.",
+      letterP2: "Gracias por cada momento, por cada plática, por cada risa y por cada detalle que quizá tú ves pequeño, pero que para mí significa mucho. Me encanta compartir mi tiempo contigo y me emociona pensar en todo lo que todavía nos falta vivir.",
+      letterP3: "Si así de bonito ha sido este comienzo, entonces sé que lo nuestro puede seguir creciendo de una manera muy especial. Y la verdad, yo quiero seguir escribiendo esta historia contigo.",
+      letterSignature: "Feliz primer mes, mi amor. ❤️"
+    };
+
+    /* =========================================================
+       NO MUEVAS NADA DE ABAJO SI NO QUIERES
+       ========================================================= */
+
+    const timeline = document.getElementById("timeline");
+    const heroMessage = document.getElementById("heroMessage");
+    const sideNote = document.getElementById("sideNote");
+
+    heroMessage.textContent = CONFIG.heroMessage;
+    sideNote.textContent = CONFIG.sideNote;
+
+    function renderMemories() {
+      timeline.innerHTML = "";
+
+      CONFIG.memories.forEach((memory, index) => {
+        const card = document.createElement("article");
+        card.className = "memory-card reveal" + (index % 2 !== 0 ? " reverse" : "");
+
+        card.innerHTML = `
+          <div class="memory-media" data-image="${memory.image}" data-caption="${memory.title} — ${memory.text}">
+            <img src="${memory.image}" alt="${memory.title}">
+          </div>
+          <div class="memory-copy">
+            <div class="memory-index">Recuerdo ${String(index + 1).padStart(2, "0")}</div>
+            <h3 class="memory-title">${memory.title}</h3>
+            <div class="memory-date">${memory.date}</div>
+            <p>${memory.text}</p>
+          </div>
+        `;
+
+        timeline.appendChild(card);
+      });
+    }
+
+    let reasonIndex = 0;
+    let reasonInterval = null;
+
+    const reasonDisplay = document.getElementById("reasonDisplay");
+    const reasonDots = document.getElementById("reasonDots");
+    const nextReasonBtn = document.getElementById("nextReason");
+    const autoPlayBtn = document.getElementById("autoPlayReasons");
+
+    function renderReasonDots() {
+      reasonDots.innerHTML = "";
+      CONFIG.reasons.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.className = "reason-dot" + (i === reasonIndex ? " active" : "");
+        reasonDots.appendChild(dot);
+      });
+    }
+
+    function updateReason() {
+      reasonDisplay.textContent = CONFIG.reasons[reasonIndex];
+      renderReasonDots();
+    }
+
+    function nextReason() {
+      reasonIndex = (reasonIndex + 1) % CONFIG.reasons.length;
+      updateReason();
+    }
+
+    function toggleAutoReasons() {
+      if (reasonInterval) {
+        clearInterval(reasonInterval);
+        reasonInterval = null;
+        autoPlayBtn.textContent = "Auto ✨";
+      } else {
+        reasonInterval = setInterval(nextReason, 2400);
+        autoPlayBtn.textContent = "Pausar ⏸️";
+      }
+    }
+
+    nextReasonBtn.addEventListener("click", nextReason);
+    autoPlayBtn.addEventListener("click", toggleAutoReasons);
+
+    const lockedLetter = document.getElementById("lockedLetter");
+    const letterContent = document.getElementById("letterContent");
+    const unlockLetterBtn = document.getElementById("unlockLetter");
+    const openLetterTop = document.getElementById("openLetterTop");
+
+    document.getElementById("letterTitle").textContent = CONFIG.letterTitle;
+    document.getElementById("letterP1").textContent = CONFIG.letterP1;
+    document.getElementById("letterP2").textContent = CONFIG.letterP2;
+    document.getElementById("letterP3").textContent = CONFIG.letterP3;
+    document.getElementById("letterSignature").textContent = CONFIG.letterSignature;
+
+    function unlockLetter() {
+      lockedLetter.style.display = "none";
+      letterContent.classList.add("show");
+      document.getElementById("carta").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    unlockLetterBtn.addEventListener("click", unlockLetter);
+
+    openLetterTop.addEventListener("click", () => {
+      document.getElementById("carta").scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        unlockLetter();
+      }, 450);
+    });
+
+    const yesBtn = document.getElementById("yesBtn");
+    const yesResult = document.getElementById("yesResult");
+
+    yesBtn.addEventListener("click", () => {
+      yesResult.classList.add("show");
+      yesBtn.textContent = "Siempre tú 💖";
+      burstHearts();
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const closeLightbox = document.getElementById("closeLightbox");
+
+    document.addEventListener("click", (e) => {
+      const media = e.target.closest(".memory-media");
+      if (!media) return;
+
+      lightboxImg.src = media.dataset.image;
+      lightboxCaption.textContent = media.dataset.caption;
+      lightbox.classList.add("show");
+    });
+
+    closeLightbox.addEventListener("click", () => {
+      lightbox.classList.remove("show");
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove("show");
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("show");
+      }
+    });
+
+    function createFloatingHearts() {
+      const heartsContainer = document.getElementById("hearts");
+      const symbols = ["❤", "♥", "♡", "💕"];
+
+      for (let i = 0; i < 22; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (10 + Math.random() * 10) + "s";
+        heart.style.animationDelay = Math.random() * 6 + "s";
+        heart.style.fontSize = (14 + Math.random() * 14) + "px";
+        heartsContainer.appendChild(heart);
+      }
+    }
+
+    function burstHearts() {
+      const symbols = ["💖", "💕", "💗", "💘"];
+      for (let i = 0; i < 18; i++) {
+        const burst = document.createElement("div");
+        burst.className = "heart";
+        burst.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        burst.style.left = (40 + Math.random() * 20) + "vw";
+        burst.style.bottom = "10vh";
+        burst.style.opacity = "0.9";
+        burst.style.fontSize = (16 + Math.random() * 20) + "px";
+        burst.style.animationDuration = (4 + Math.random() * 2) + "s";
+        document.getElementById("hearts").appendChild(burst);
+
+        setTimeout(() => burst.remove(), 6500);
+      }
+    }
+
+    function revealOnScroll() {
+      const elements = document.querySelectorAll(".reveal");
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            io.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14
+      });
+
+      elements.forEach(el => io.observe(el));
+    }
+
+    renderMemories();
+    updateReason();
+    createFloatingHearts();
+    revealOnScroll();
+  </script>
+</body>
+</html>
