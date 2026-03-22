@@ -36,6 +36,10 @@
     }
 
     body {
+
+      <audio id="bgMusic" autoplay loop>
+  <source src="audio/song.mp3" type="audio/mpeg">
+</audio>
       margin: 0;
       font-family: 'Inter', sans-serif;
       color: var(--text);
@@ -965,6 +969,17 @@
     /* =========================================================
        AHH CHISMOSEANDO EL CODIGO.. ERES HACKER O QUE JAJA 
        ========================================================= */
+   const music = document.getElementById("bgMusic");
+
+ 
+  window.addEventListener("load", () => {
+    music.play().catch(() => {});
+  });
+
+  
+  document.addEventListener("click", () => {
+    music.play().catch(() => {});
+  }, { once: true });
 
     const CONFIG = {
       heroMessage: "Quise hacer esto para ti porque este primer mes ha sido demasiado bonito para dejarlo solo en mi cabeza. Quería guardarlo de una manera especial, para que siempre podamos volver aquí y recordar lo lindo que ha sido todo contigo.",
